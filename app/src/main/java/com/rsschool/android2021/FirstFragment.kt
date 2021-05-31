@@ -1,10 +1,12 @@
 package com.rsschool.android2021
 
 import android.os.Bundle
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 
@@ -29,11 +31,21 @@ class FirstFragment : Fragment() {
         val result = arguments?.getInt(PREVIOUS_RESULT_KEY)
         previousResult?.text = "Previous result: ${result.toString()}"
 
-        // TODO: val min = ...
-        // TODO: val max = ...
+
 
         generateButton?.setOnClickListener {
-            // TODO: send min and max to the SecondFragment
+            //init min and max
+            val minEditText:EditText = view.findViewById(R.id.min_value)
+            val min=minEditText.text?.toString()?.toInt() ?: 0
+
+            val maxEditText:EditText = view.findViewById(R.id.max_value)
+            val max=maxEditText.text?.toString()?.toInt() ?: 0
+
+            // send min and max to the SecondFragment
+            (activity as? MainActivity)?.openSecondFragment(min,max)
+
+
+
         }
     }
 
